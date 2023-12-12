@@ -14,7 +14,7 @@ In case you want to know how to represent a table using HTML, here is the [intro
 ### Step 1: to query data:
 ```python
 import csv
-def fetch_data(city_name = None, include_header = False):
+def fetch_data(city_name = None, include_header = False, exact_match = False):
     with open("us-cities.csv") as csvfile:
         csvreader = csv.reader(csvfile, delimiter=',', quotechar='|')
         row_id = -1
@@ -28,12 +28,15 @@ def fetch_data(city_name = None, include_header = False):
             is_wanted_row = False
             if city_name is None:
                 is_wanted_row = True
-            for col in row:
+            for raw_col in row:
                 col_id += 1
-                line.append( col.replace('"', '') )
-                if col_id == 0 and city_name is not None \
-                    and city_name.lower() in col.lower():
-                    is_wanted_row = True
+                col = raw_col.replace('"', '')
+                line.append( col )
+                if col_id == 0 and city_name is not None:
+                    if not exact_match and city_name.lower() in col.lower():
+                        is_wanted_row = True
+                    elif exact_match and city_name.lower() == col.lower():
+                        is_wanted_row = True
             if is_wanted_row:
                 if row_id > 0:
                     line.insert(0, "{}".format(row_id))
@@ -81,7 +84,7 @@ def append_or_update_data(req):
         city_name, lat, lng, country, state, population,
     )
 
-    existing_records = fetch_data(city_name = city_name)
+    existing_records = fetch_data(city_name = city_name, exact_match=True)
     if len(existing_records) == 0:
         with open('us-cities.csv', 'a') as f:
             f.write(input_line)
@@ -142,7 +145,7 @@ Then, you'll see the appended data when accessing `http://127.0.0.1:8080/data` i
 Add the following code in file `app.py`:
 ```python
 def delete_data(city_name):
-    existing_records = fetch_data(city_name = city_name)
+    existing_records = fetch_data(city_name = city_name, exact_match=True)
     if len(existing_records) > 0:
         all_records = fetch_data(include_header=True)
         lines = []
@@ -150,12 +153,9 @@ def delete_data(city_name):
             if row[1].lower() != city_name.lower():
                 line_to_write = ",".join(['"{}"'.format(col) for col in row[1:]])
                 lines.append(line_to_write + "\n")
-            print(row[1].lower(), city_name.lower(), row[1].lower() != city_name.lower())
         with open('us-cities.csv', 'w') as f:
-            f.seek(0)
             f.writelines(lines)
-            pos = f.tell()
-            f.truncate(pos)
+            f.truncate()
             f.close()
         return True
     return False
@@ -183,6 +183,10 @@ print(res.text)
 ```
 
 After running `client.py` you shall see the data entry "New Rome" has been deleted
+
+Please note, the CRUD (Create, Retrieve, Update, Delete) APIs are defined at the same path `/data` with different HTTP methods: PUT, GET, PUT, DELETE respectively. This is a classic way to define RESTful APIs for a web service. In this way the user can understand what the API works for just by reading its path and method.
+
+`POST` method is not used here, because as a best practice the semantic meaning of POST is for batch inserting or updating, while PUT is for the same functions on a single row of record.
 
 #### Now you shall be able to create your own RESTful APIs through which you can provide services to third-party users, e.g., downstream services on the internet, or be integrated in any other applications.
 
