@@ -117,9 +117,11 @@ def delete_data(city_name):
             f.seek(0)
             f.writelines(lines)
             pos = f.tell()
+            print(pos)
             f.truncate(pos)
             f.close()
         return True
+    
     return False
 
 @app.route('/data', methods=['DELETE'])
