@@ -1,4 +1,4 @@
-# How to build a Web Application on Azure - Part 1
+# How to build a Web Application on Azure - Part 1 - the basic
 
 In this tutorial, we are going to build a basic web application and deploy it on the Azure using VS Code.
 
