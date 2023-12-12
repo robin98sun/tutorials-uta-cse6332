@@ -200,7 +200,7 @@ App1/
 
 ### Step 1: Modify the code for deploying ([reference](https://github.com/Microsoft/python-sample-vscode-flask-tutorial))
 
-It's kind of mystical for VS Code to work out the whole thing and making your program automatically running on Azure just by clicking several buttons. Actually, behind the simplicity there are huge amount of engineering efforts.
+It's kind of mystical for VS Code working out the whole thing and especially making your program automatically running on Azure just by clicking several buttons. Actually, behind the simplicity there are huge amount of engineering efforts.
 
 However, we have to understand at least one thing before leaving everything to VS Code: how does Azure know how to start your program? Please refer to [this document](https://learn.microsoft.com/en-us/azure/developer/python/configure-python-web-app-on-app-service)
 
