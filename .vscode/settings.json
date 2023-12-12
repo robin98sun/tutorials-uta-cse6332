@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/181ee85a-971c-4a3b-af79-a2efd689cce8/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/uta-cse6331-980-tutorial",
+    "appService.deploySubpath": "."
+}
