@@ -101,7 +101,7 @@ Please try it out according to the referred document above and the example code 
 
 ### An interesting character of Azure Cosmos DB:
 
-Have you noticed in *`step 3`* we call it as a Non-SQL database, while in *`step 5`* a SQL is used to query the database. What does it mean? Is Azure Cosmos DB still a Non-SQL database? If yes, why does it support SQL query interface but being called Non-SQL database?
+Maybe you have noticed in *`step 3`* we call it as a Non-SQL database, while in *`step 5`* a SQL is used to query the database. What does it mean? Is Azure Cosmos DB still a Non-SQL database? If yes, why does it support SQL query interface but being called Non-SQL database?
 
 That's a long but interesting story, you may do your research on Google if you are interested.
 
