@@ -1,4 +1,4 @@
-# How to build a Web Application on Azure - Part 3 - Using Database
+# How to build a Web Application on Azure - Part 4 - Using Database
 
 When data size scales up, and when the complexity of data pattern and query goes high, database is inevitably a good choice to handle data.
 
