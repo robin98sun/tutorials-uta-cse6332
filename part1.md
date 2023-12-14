@@ -42,7 +42,7 @@ please refer to: [Python environments in VS Code](https://code.visualstudio.com/
 In the CLI (command-line interface, a terminal), type the following command:
 
 ```bash
-pip install flask
+$ pip install flask
 ```
 
 Create a file `my_app.py` using the following code:
@@ -65,7 +65,7 @@ if __name__ == "__main__":
 
 In the terminal, type the following commands:
 ```bash
-pthon3 ./my_app.py
+$ pthon3 ./my_app.py
 ```
 You should see:
 ```bash
