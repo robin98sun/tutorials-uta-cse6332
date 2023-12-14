@@ -58,7 +58,7 @@ You will see the document `us-cities.csv` content in the alert window.
 
 ### Step 3: Show the data in the webpage
 
-Add a tag in the html with `<body>` tags like this:
+Add a tag in the html within `<body>` tags like this:
 ```html
 <div id="data" align="center"></div>
 ```
