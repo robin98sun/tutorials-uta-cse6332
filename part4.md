@@ -66,7 +66,7 @@ Notes:
 1. In the `Azure Tools` the term "Table" in Rational DB is substituted with "Collection". But in the referred document it is using another term "Container". They are representing the same thing but different names in their own context. This is just kind of traditions from different cultures. At some point it reveals the complexity of the industry world.
 1. You will get identical results by replacing the `fetch_data` function in the app with querying database like this:
 ```python
-def fetch_database(city_name = None, include_header = False, exact_match = False):
+def fetch_data(city_name = None, include_header = False, exact_match = False):
     container = database.get_container_client("us_cities")
     QUERY = "SELECT * from us_cities"
     params = None
