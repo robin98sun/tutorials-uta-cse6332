@@ -38,7 +38,7 @@ That's why in this kind of databases, unlike the rational SQL database, each row
 
 This kind of databases usually have a common name: Non-SQL Database, or Key-Value Store (Key-Value Store is an increasing hot topic and if you are interested please refer to CSE 6350 Advanced Topics in Computer Architecture instructed by Dr. Song Jiang).
 
-After converting the csv file into a collection of JSON documents (in case you don't know how to, please refer to [this](./src/part4/convert-csv-to-documents.py)), select all those generated JSON files by press "Cmd-A" on MacOS or "Ctrl-A" if on Windows. Then you will see they are imported into the "Documents" folder under the collection "us-cities"
+After converting the csv file into a collection of JSON documents (in case you don't know how to, please refer to [this](./src/part4/convert-csv-to-documents.py)), select all those generated JSON files by press "Cmd-A" on MacOS or "Ctrl-A" if on Windows. Then you will see they are imported into the "Documents" folder under the collection "us_cities"
 
 ### Step 4: connect to the database in your application 
 
