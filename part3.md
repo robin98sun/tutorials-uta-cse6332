@@ -149,7 +149,7 @@ Please try it by yourself.
 
 Because the data is dynamically fetched from the server, to put a delete button besides each row of data is also dynamic, including setting the reaction for the click events of those buttons.
 
-Hence, we are going to update the JS code for query to enable deleting data entries, by adding these two functions below the line of showing data `$('#data').html(data)`:
+Hence, we are going to update the JS code block of query to enable deleting data entries, by adding these two functions below the line of showing data `$('#data').html(data)`:
 
 ```javascript
 $("#data").find("tr").each( function(tr_id, tr_elem){
