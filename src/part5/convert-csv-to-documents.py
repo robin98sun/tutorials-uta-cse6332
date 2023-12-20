@@ -34,8 +34,12 @@ parser.add_argument(
 )
 
 parser.add_argument(
+    '--start-row', type=int, required=False, default = 0,
+    help='from which row of the csv file to start reading' 
+)
+parser.add_argument(
     '--lines', type=int, required=False, default = 0,
-    help='the total lines of the csv file'
+    help='the total lines of the csv file to read from the starting row'
 )
 
 args = parser.parse_args()
@@ -60,6 +64,11 @@ with open(args.csv_file, 'r') as csvfile:
             shutil.rmtree(args.output_dir)
         os.mkdir(args.output_dir)
 
+    lines_to_read = -1
+    if args.lines > 0:
+        lines_to_read = args.lines
+    start_row = args.start_row
+
     for row in csvreader:
         row_id+=1
         doc = {}
@@ -75,7 +84,8 @@ with open(args.csv_file, 'r') as csvfile:
                 col_name = headers[col_id] 
                 doc[col_name] = col
 
-        if row_id > 0 :
+        if row_id > start_row and lines_to_read > 0:
+            lines_to_read-=1
             if db is None:
                 doc_name = "doc-{}".format(row_id)
                 doc_path = "{}/{}.json".format(args.output_dir, doc_name)
@@ -89,11 +99,10 @@ with open(args.csv_file, 'r') as csvfile:
             
             if args.lines > 0:
                 if row_id % 50 == 0:
-                    print(".{:.3f}%".format(row_id/args.lines * 100), end="", flush=True)
+                    print(".{:.3f}%".format(row_id/(args.lines+args.start_row) * 100), end="", flush=True)
                 else:
                     print(".", end="", flush=True)
                     
-    
     csvfile.close()
     print("done")
 

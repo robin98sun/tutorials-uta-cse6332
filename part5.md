@@ -60,7 +60,7 @@ if cache.ping():
 
 ### Understand the two fundamental operations of a key-value store: write and read
 
-A in-memory data store is usually implemented as a key-value store (all data stored in memory). Redis is among the most popular ones. You can imagine it as a dictionary or map data structure.
+An in-memory data store is usually implemented as a key-value store (all data stored in memory). Redis is among the most popular ones. You can imagine it as a dictionary or map data structure.
 
 * write: store data
     - to store a value in a `dict` variable (say, `data`), we use `data[key] = value`.
@@ -83,9 +83,10 @@ For the example code, please refer to the [source code](src/part5/app.py). Note,
 
 ### Questions to think about:
 
-1. When will the in-memory be useful?
+1. When will the in-memory cache be useful?
 1. How useful will it be? 
 1. Is it always useful?
+1. Why not just use in-memory data structures like a dictionary or a map?
 
 ## A hint for debugging Azure services:
 
