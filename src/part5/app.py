@@ -2,6 +2,28 @@
 from flask import Flask
 from flask import render_template
 
+# Redis connection 
+import redis
+# the "Primary connection string" in the "Access keys"
+redis_passwd = "tutorial-uta-cse6332-redis.redis.cache.windows.net:6380,password=b9Q42F5LUEahwEb2D6HCbXLzTcIupxtPtAzCaEpdjYE=,ssl=True,abortConnect=False"
+redis_passwd = "b9Q42F5LUEahwEb2D6HCbXLzTcIupxtPtAzCaEpdjYE="
+redis_host = "tutorial-uta-cse6332-redis.redis.cache.windows.net"
+cache = redis.StrictRedis(
+            host=redis_host, port=6380, 
+            db=0, password=redis_passwd,
+            ssl=True,
+        )
+
+if cache.ping():
+    print("pong")
+
+# to delete all data in the cache
+def purge_cache():
+    for key in cache.keys():
+        cache.delete(key.decode())
+
+# end of Redis connection
+
 # Database connection part starts from here
 import json
 from azure.core.exceptions import AzureError
@@ -24,20 +46,30 @@ def fetch_database(city_name = None, include_header = False, exact_match = False
     
     headers = ["city", "lat", "lng", "country", "state", "population"]
     result = []
-    row_id = 0
+
+    # quickly fetch the result if it already in the cache
+    if cache.exists(QUERY):
+        result = json.loads(cache.get(QUERY).decode())
+    
+    else:
+        row_id = 0    
+        for item in container.query_items(
+            query=QUERY, parameters=params, enable_cross_partition_query=True,
+        ):
+            row_id += 1
+            line = [str(row_id)]
+            for col in headers:
+                line.append(item[col])
+            result.append(line)
+        
+        # cache the result for future queries
+        cache.set(QUERY, json.dumps(result))
+
     if include_header:
         line = [x for x in headers]
         line.insert(0, "")
-        result.append(line)
-    
-    for item in container.query_items(
-        query=QUERY, parameters=params, enable_cross_partition_query=True,
-    ):
-        row_id += 1
-        line = [str(row_id)]
-        for col in headers:
-            line.append(item[col])
-        result.append(line)
+        result.insert(0, line)
+
     return result
 
 
@@ -103,6 +135,7 @@ def query():
     return page
 
 def append_or_update_data(req):
+
     city_name = req['city_name'].replace('"', '')
     lat = req['lat'].replace('"', '')
     lng = req['lng'].replace('"', '')
