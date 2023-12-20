@@ -89,7 +89,7 @@ For the example code, please refer to the [source code](src/part5/app.py). Note,
 
 ## A hint for debugging Azure services:
 
-In the Azure extension of VS Code, right click the service that you want to debug and select `Start Streams Logs`.
+Before deploying the web app, in the Azure extension of VS Code, right click it and select `Start Streams Logs`.
 
 In very few cases, you may want to `SSH into Web App`.
 

@@ -50,6 +50,7 @@ def fetch_database(city_name = None, include_header = False, exact_match = False
     # quickly fetch the result if it already in the cache
     if cache.exists(QUERY):
         result = json.loads(cache.get(QUERY).decode())
+        print("cache hit: [{}]".format(QUERY))
     
     else:
         row_id = 0    
@@ -64,6 +65,7 @@ def fetch_database(city_name = None, include_header = False, exact_match = False
         
         # cache the result for future queries
         cache.set(QUERY, json.dumps(result))
+        print("cache miss: [{}]".format(QUERY))
 
     if include_header:
         line = [x for x in headers]
