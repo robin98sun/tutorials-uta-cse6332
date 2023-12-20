@@ -75,9 +75,9 @@ Here we may use some other basic methods of in-memory cache:
 1. `exists`: to see if a key exists or not `if cache.exists(key): ...`.
 1. `delete`: to delete a key in the cache: `cache.delete(key)`
 
-First, in the `fetch_database` function, cache a query if it does not exist in the cache, or return an already cached query.
+First, in the `fetch_database` function, cache a query if it does not exist in the cache, or return an already cached result.
 
-Second, delete all keys whenever there is any updates.
+Second, delete all keys whenever there is a update.
 
 For the example code, please refer to the [source code](src/part5/app.py). Note, the source code is not a fully functional program, please fill in the necessary code for to your case.
 
