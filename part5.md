@@ -29,6 +29,8 @@ Before getting started, prepare your web app and database according to [tutorial
 1. create a file `requirements.txt` at the root directory of your application, file content:
 ```bash
 redis>=5.0
+azure-core>=1.29.0
+azure-cosmos>=4.5.0
 ```
 2. install the package in the terminal according to `requirements.txt`
 ```bash
@@ -85,7 +87,11 @@ For the example code, please refer to the [source code](src/part5/app.py). Note,
 1. How useful will it be? 
 1. Is it always useful?
 
+## A hint for debugging Azure services:
 
+In the Azure extension of VS Code, right click the service that you want to debug and select `Start Streams Logs`.
+
+In very few cases, you may want to `SSH into Web App`.
 
 
 
