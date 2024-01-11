@@ -29,7 +29,7 @@ import json
 from azure.core.exceptions import AzureError
 from azure.cosmos import CosmosClient, PartitionKey
 
-DB_CONN_STR = "AccountEndpoint=https://tutorial-uta-cse6332.documents.azure.com:443/;AccountKey=eWrWM8m3zWEQI1uBsWgFEOEBOuue7m68PRANCQCTGCRf3tnPEYvyNXoNGNBnowsmxR7UmxiC5aKTACDbpN0wdw=="
+DB_CONN_STR = "AccountEndpoint=https://tutorial-uta-cse6332.documents.azure.com:443/;AccountKey=fSDt8pk5P1EH0NlvfiolgZF332ILOkKhMdLY6iMS2yjVqdpWx4XtnVgBoJBCBaHA8PIHnAbFY4N9ACDbMdwaEw==;"
 db_client = CosmosClient.from_connection_string(conn_str = DB_CONN_STR)
 database = db_client.get_database_client("tutorial")
 # Database connection part ends at here

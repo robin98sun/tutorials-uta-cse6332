@@ -5,7 +5,9 @@ This is a set of tutorials on how to build a simple web application on Azure
 - [Part3: interactive web application using jQuery](part3.md)
 - [Part4: query database in the web application](part4.md)
 - [Part5: speed up queries using Redis](part5.md)
-- Part6: data visualization using some popular JS libraries
+- [Part6: data visualization using some popular JS libraries](part6.md)
+
+[Advices](advices.md)
 
 
 
